@@ -7,14 +7,13 @@
 namespace MSPCAM001{
 	class FrameSequence{
 		std::vector<unsigned char **> imageSequence;
-		int frameSizeX;
-		int frameSizeY;
+		int frameSizeX,frameSizeY,imageSizeX,imageSizeY;
 		public:
 		FrameSequence();
 		~FrameSequence();
-		void write(std::string filename, std::string option std::string pgm, std::string comments);
-		void setSize(int x, int y);
-		void read(const unsigned char &pixels,int originx, int originy);
+		// void write(std::string filename, std::string option std::string pgm, std::string comments);
+		void setSize(int framex, int framey, int imagex, int imagey);
+		void read(unsigned char *pixels,int originx, int originy);
 	};
 }
 #endif

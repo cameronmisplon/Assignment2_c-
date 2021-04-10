@@ -15,15 +15,30 @@ namespace MSPCAM001{
 				}
 				delete [] frame;
 			}
-			imageSequence.clear()
+			imageSequence.clear();
 		}
 	}
-	void MSPCAM001::FrameSequence::setSize(int x, int y) : frameSizeX(x), frameSizeY(y)
-	{}
-	void MSPCAM001::FrameSequence::read(const unsigned char &pixels, int originx, int originy)
+	void MSPCAM001::FrameSequence::setSize(int framex, int framey, int imagex, int imagey)  
+	{
+		this->frameSizeX=framex;
+		this->frameSizeY=framey;
+		this->imageSizeX=imagex; 
+		this->imageSizeY=imagey;
+	}
+	void MSPCAM001::FrameSequence::read(unsigned char *pixels, int originx, int originy)
 	{
 		unsigned char ** frame = new unsigned char * [this->frameSizeY];
 		for (int i=0; i<this->frameSizeX; i++){
 			frame[i] = new unsigned char[this->frameSizeX];
 		}
-		for 		
+		for (int j=originy;j<originy+this->frameSizeY;j++)
+		{
+			for (int k=originx;k<originx+this->frameSizeX;k++)
+			{
+				frame[j-originy][k-originx] = pixels[((this->imageSizeX)*j)+k];
+			}
+		}
+		(this->imageSequence).push_back(frame);
+	}
+}	
+			
