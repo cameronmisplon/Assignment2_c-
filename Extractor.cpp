@@ -14,11 +14,15 @@ int main(int argc, char* argv[])
 		float xend,xcoord,yend,ycoord;
 		MSPCAM001::FrameSequence frames;
 		getline(in,pgm);
+		std::cout << pgm << std::endl;
 		getline(in,comments);
+		std::cout << comments << std::endl;
 		getline(in,sizedata);
+		std::cout << sizedata << std::endl;
 		std::istringstream iss(sizedata);
 		iss >> Ncols >> Nrows;
 		getline(in,brightness);
+		std::cout << brightness << std::endl;
 		unsigned char * pixels = new unsigned char[Ncols*Nrows]; //Use unsigned char because it has range 0-255 which is good for the pixel values
 		in.read(reinterpret_cast<char *>(pixels),Ncols*Nrows);
 		unsigned char * temp = &(pixels[10]);
@@ -58,7 +62,7 @@ int main(int argc, char* argv[])
 			option = std::string(argv[k+1]);
 			filename = std::string(argv[k+2]);
 			frames.write(filename,option);
-		}
+		} 
 	}
 	in.close();	
 	return 0;
