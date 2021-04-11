@@ -14,11 +14,13 @@ int main(int argc, char* argv[])
 		float xend,xcoord,yend,ycoord;
 		MSPCAM001::FrameSequence frames;
 		getline(in,pgm);
-		std::cout << pgm << std::endl;
 		getline(in,comments);
-		std::cout << comments << std::endl;
-		getline(in,sizedata);
-		std::cout << sizedata << std::endl;
+		if (comments.substr(0,1).compare("#")!=0){
+			sizedata = comments;
+		}
+		else{
+			getline(in,sizedata);
+		}
 		std::istringstream iss(sizedata);
 		iss >> Ncols >> Nrows;
 		getline(in,brightness);
